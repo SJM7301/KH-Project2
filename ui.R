@@ -1,6 +1,6 @@
 ui <- navbarPage(
   title = "대한민국 대기환경 시각화",
-  tabPanel("🌫️미세먼지 현황",
+  tabPanel("미세먼지 현황",
            fluidPage(
              sidebarLayout(
                sidebarPanel(
@@ -41,21 +41,21 @@ ui <- navbarPage(
               margin-bottom: 10px;
             }"
                  )),
-                 leafletOutput("pm_map", height = "690px"),
+                 leafletOutput("pm_map", height = "700px"),
                  hr(),
                  plotlyOutput("metal_pie", height = "400px")
                )
              )
            )
   ),
-  tabPanel("📊시도별 대기정보",
+  tabPanel("미세먼지 동향",
            fluidPage(
              # 첫 번째 Row - 지역 선택과 날짜 범위 선택을 한 영역으로 배치
              fluidRow(
                column(12,  
                       wellPanel(  # 지역 선택과 날짜 범위 선택을 동일한 영역에 배치
                         fluidRow(
-                          column(7,  # 첫 번째 컬럼 - 지역 선택
+                          column(6,  # 첫 번째 컬럼 - 지역 선택
                                  checkboxGroupInput(
                                    inputId = "selected_regions",
                                    label = "지역 선택",
@@ -72,7 +72,7 @@ ui <- navbarPage(
                                    inline = TRUE  # 체크박스를 수평으로 배치
                                  )
                           ),
-                          column(3,  # 두 번째 컬럼 - 날짜 범위 선택
+                          column(6,  # 두 번째 컬럼 - 날짜 범위 선택
                                  radioButtons(
                                    inputId = "date_range", 
                                    label = "날짜 범위 선택", 
@@ -88,12 +88,12 @@ ui <- navbarPage(
              # 두 번째 Row - 그래프 출력
              fluidRow(  
                column(12,  
-                      plotlyOutput("pm_plot", height = "600px")  # PM10 농도 그래프
+                      plotlyOutput("pm_plot", height = "800px")  # PM10 농도 그래프
                )
              )
            )
   ),
-  tabPanel("🛒상품추천",
+  tabPanel("쿠팡 파트너",
            fluidPage(
              tags$style(
                "body.tab-pane.coupang-tab {

@@ -99,7 +99,9 @@ load_pm_data <- function(code) {
   
   doc <- xmlTreeParse(url, useInternalNodes = TRUE, encoding = "UTF-8")
   rootNode <- xmlRoot(doc)
-  xmlData <- xmlToDataFrame(nodes = getNodeSet(rootNode, "//item"))
+  items <- getNodeSet(rootNode, "//item")
+  xmlData <- xmlToDataFrame(nodes = items)
+  
   if (length(items) == 0) {
     message("API 응답에 데이터가 없습니다.")
     return(data.frame())
@@ -169,13 +171,13 @@ load_or_update_pm_data <- function(code) {
       }
       
       new_data <- load_pm_data(code) %>%
+        mutate(dataTime = as.Date(dataTime)) %>%
         filter(dataTime > latest_date)  # 기존 데이터 이후만 필터링
       if (nrow(new_data) > 0) {
         updated_data <- rbind(existing_data, new_data)  # 데이터 병합
         updated_data <- updated_data %>% arrange(dataTime) # 데이터 정렬
         write.xlsx(updated_data, file_path)
         message(paste0("data_all.xlsx 업데이트 완료: ", code))
-        return(existing_data)
       } else {
         message("새로운 데이터가 없습니다.")
       }
