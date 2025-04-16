@@ -223,7 +223,7 @@ load_metal_data <- function(metal_code, date, stationcode) {
   if (nrow(xmlData) == 0) return(NULL)
   
   df <- xmlData %>%
-    filter(stringr::str_sub(sdate, -6, -1) == "220000") %>%  # 🔍 22시 데이터만
+    filter(stringr::str_sub(sdate, -6, -1) == "220000") %>%  # 22시 데이터만
     mutate(
       dataTime = as.Date(sdate, format = "%Y%m%d%H%M%S"),
       stationCode = as.character(stationcode),

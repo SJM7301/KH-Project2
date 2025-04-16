@@ -211,7 +211,7 @@ server <- function(input, output, session) {
     ) %>%
       layout(
         title = list(text = paste0(clicked_region(), " 금속 성분 분포 (", selected_date(), ")")),
-        margin = 100,
+        margin = list(t = 200, b = 0, l = 50, r = 50),  # 마진 설정
         showlegend = TRUE
       )
   })

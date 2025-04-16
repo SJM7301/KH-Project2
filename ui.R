@@ -26,7 +26,8 @@ ui <- navbarPage(
                              min = 1, 
                              max = 31, 
                              value = 1, 
-                             step = 1)
+                             step = 1),
+                 plotlyOutput("metal_pie", height = "500px")
                ),
                mainPanel(
                  h4("건강 영향 및 권고 사항"),
@@ -42,8 +43,7 @@ ui <- navbarPage(
             }"
                  )),
                  leafletOutput("pm_map", height = "690px"),
-                 hr(),
-                 plotlyOutput("metal_pie", height = "400px")
+                 hr()
                )
              )
            )
@@ -107,7 +107,7 @@ ui <- navbarPage(
               }"
              ),
              div(class = "tab-pane coupang-tab",
-                 HTML('<iframe src="https://m.coupang.com/"></iframe>')
+                 HTML('<iframe src="https://www.coupang.com/np/categories/310894"></iframe>')
              )
            )
   )
